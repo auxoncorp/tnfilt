@@ -1,0 +1,12 @@
+* tnfilt
+Turn your typenum compilation errors into something fit for a human. 
+
+** Install
+#+begin_src bash
+  cargo install --git ssh://git@github.com/auxoncorp/tnfilt.git --force
+#+end_src
+
+** Use
+#+begin_src bash
+  unbuffer cargo build 2>&1 | tnfilt
+#+end_src
