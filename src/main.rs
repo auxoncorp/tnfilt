@@ -86,3 +86,26 @@ fn main() {
         println!("");
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use proptest::prelude::*;
+    use super::{line, Term};
+
+    proptest! {
+
+        #[test]
+        fn passthrough_for_unrelated_content(s in r"[a-zA-Z0-9_\s\n]*") {
+            let (unparsed, terms) = line(&s).unwrap();
+            let mut out = String::new();
+            for t in terms {
+                match t {
+                    Term::Char(c) => out.push(c),
+                    Term::Unsigned(u) => panic!("Did not expect any unsigned"),
+                }
+            }
+            assert_eq!(s, out.as_ref());
+        }
+    }
+
+}
