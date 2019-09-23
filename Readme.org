@@ -6,43 +6,12 @@ Turn your typenum compilation errors into something fit for a
 human. ~tnfilt~ turns this:
 
 #+BEGIN_SRC
-   Compiling tnfilt-test v0.1.0 (/home/dpitt/src/tnfilt-test)
 error[E0271]: type mismatch resolving `<typenum::UInt<typenum::UInt<typenum::UInt<typenum::UInt<typenum::UInt<typenum::UTerm, typenum::B1>, typenum::B0>, typenum::B1>, typenum::B0>, typenum::B0> as typenum::IsLessOrEqual<typenum::UInt<typenum::UInt<typenum::UInt<typenum::UInt<typenum::UTerm, typenum::B1>, typenum::B0>, typenum::B1>, typenum::B0>>>::Output == typenum::B1`
-  --> src/main.rs:12:5
-   |
-5  | / fn less_than_ten<U: Unsigned>()
-6  | | where
-7  | |     U: IsLessOrEqual<U10, Output = True>,
-8  | | {
-9  | | }
-   | |_- required by `less_than_ten`
-...
-12 |       less_than_ten::<U20>();
-   |       ^^^^^^^^^^^^^^^^^^^^ expected struct `typenum::B0`, found struct `typenum::B1`
-   |
-   = note: expected type `typenum::B0`
-              found type `typenum::B1`
 #+END_SRC
 
 into this:
 #+BEGIN_SRC
-   Compiling tnfilt-test v0.1.0 (/home/dpitt/src/tnfilt-test)
 error[E0271]: type mismatch resolving `<U20 as typenum::IsLessOrEqual<U10>>::Output == typenum::B1`
-  --> src/main.rs:12:5
-   |
-5  | / fn less_than_ten<U: Unsigned>()
-6  | | where
-7  | |     U: IsLessOrEqual<U10, Output = True>,
-8  | | {
-9  | | }
-   | |_- required by `less_than_ten`
-...
-12 |       less_than_ten::<U20>();
-   |       ^^^^^^^^^^^^^^^^^^^^ expected struct `typenum::B0`, found struct `typenum::B1`
-   |
-   = note: expected type `typenum::B0`
-              found type `typenum::B1`
-
 #+END_SRC
 
 ** Getting Started
