@@ -23,3 +23,8 @@ $ cargo install --git ssh://git@github.com/auxoncorp/tnfilt.git --force
 #+BEGIN_SRC shell
 $ cargo build 2>&1 | tnfilt
 #+END_SRC
+
+** License
+
+~tnfilt~ is licensed under the MIT License (MIT) unless
+otherwise noted. Please see [[./LICENSE][LICENSE]] for more details.
