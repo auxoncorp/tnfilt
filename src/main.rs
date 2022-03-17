@@ -44,7 +44,7 @@ enum Term {
 
 named!(bit<&str, Bit>,
        preceded!(
-           alt_complete!(tag!("typenum::B") | tag!("typenum::bit::B")),
+           alt_complete!(tag!("B") | tag!("typenum::B") | tag!("typenum::bit::B")),
            alt!(
                value!(Bit::B0, tag!("0")) | value!(Bit::B1, tag!("1"))
            )
@@ -54,10 +54,10 @@ named!(bit<&str, Bit>,
 named!(unsigned<&str, Unsigned>,
        alt!(
            value!(Unsigned::UTerm,
-                  alt_complete!(tag!("typenum::UTerm") | tag!("typenum::uint::UTerm")))
+                  alt_complete!(tag!("UTerm") | tag!("typenum::UTerm") | tag!("typenum::uint::UTerm")))
                |
            delimited!(
-               alt_complete!(tag!("typenum::UInt<") | tag!("typenum::uint::UInt<")),
+               alt_complete!(tag!("UInt<") | tag!("typenum::UInt<") | tag!("typenum::uint::UInt<")),
                map!(
                    separated_pair!(unsigned, tag!(", "), bit),
                    Unsigned::from_tuple
